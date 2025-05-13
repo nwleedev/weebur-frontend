@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# WEEBUR 프론트엔드 과제
 
-## Getting Started
+## 실행 방법
 
-First, run the development server:
+- 커맨드 창에 `pnpm dev` 입력 후 `http://localhost:3000/`으로 접속
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 작업 사항
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 상품 목록 페이지, 검색 페이지 구현
+- 검색어 필터링
+- 별점 내림차순 정렬 활성화 기능
+- 페이지 접속했을 때 미들웨어에서 쿠키 확인하여 View 방식 결정
+- Prefetch
+- 검색 페이지에서 뒤로가기 버튼
+  - 이전 페이지로 이동했을 때 쿼리 파라미터가 UI에 반영되지 않는 이슈 해결(컴포넌트 키)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 프로젝트 구조
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Feature Sliced Design을 도입함
 
-## Learn More
+- /app
 
-To learn more about Next.js, take a look at the following resources:
+  - 페이지 라우팅
+  - 프로바이더 세팅
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- /entities
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+  - Tanstack Query에 전달할 수 있는 상품 목록 쿼리 함수
+  - 상품 표시 컴포넌트
 
-## Deploy on Vercel
+- /features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+  - /products
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    - 상품 목록 쿼리 키
+    - 상품 목록 API
+    - 상품 목록 관련 설정 값
+    - 상품 목록 관련 타입
+
+  - /search
+
+    - 검색 컴포넌트
+
+  - /utils
+    - 다음 데이터를 가져올 수 있는 컴포넌트
+    - 데이터가 없을 때 표시되는 컴포넌트
+    - 다음 데이터가 없을 때 표시되는 컴포넌트
+    - 데이터를 미리 호출할 수 있는 컴포넌트
+
+- /shared
+
+  - 여러 모듈에 공유될 수 있는 함수
+  - 공용 컴포넌트
+  - 지연 로딩할 수 있는 이미지 컴포넌트
+
+- /widgets
+
+  - 상품 목록을 표시하는 컴포넌트
